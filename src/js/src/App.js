@@ -1,11 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import 'antd/dist/antd.css';
+import { Table } from 'antd';
 
-import fetch from 'unfetch'
+
+import fetch from 'unfetch';
+
+
+const columns = [
+  {
+    title: 'Student Id',
+    dataIndex: 'studentId',
+    key: 'studentId',
+  },
+  {
+    title: 'First Name',
+    dataIndex: 'firstName',
+    key: 'firstName',
+  },
+  {
+    title: 'Last Name',
+    dataIndex: 'lastName',
+    key: 'lastName',
+  }, {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
+  },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
+  }
+];
 
 
 const App = () => {
-  const [students, setStudents] = useState('');
+  const [students, setStudents] = useState([]);
 
   const fetchStudents = () => {
 
@@ -22,21 +53,18 @@ const App = () => {
   }, [])
 
   return (
-    <div className='App'>
-      <div className="App-header">
-        {
-          students.map((student) => {
-            return (
-              <div key={student.id}>
-                <h1>{student.firstName} {student.lastName}</h1>
-                <p>{student.email}</p>
-              </div>
-            )
-          })
-        }
+    <>
+
+
+      <div className='App'>
+        <Table className='App-header'
+          dataSource={students}
+          columns={columns}
+          rowKey='StudentId'
+        />
       </div>
-    </div>
+    </>
   )
 }
 
-export default App
+export default App;
