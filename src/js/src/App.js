@@ -53,7 +53,7 @@ const App = () => {
 
   const fetchStudents = () => {
 
-    fetch('http://localhost:8080/students')
+    fetch('http://localhost:8080/api/students')
       .then(response => response.json()
         .then(students => {
           // console.log(students);

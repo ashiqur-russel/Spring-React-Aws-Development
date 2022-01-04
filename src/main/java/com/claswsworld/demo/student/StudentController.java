@@ -1,5 +1,6 @@
 package com.claswsworld.demo.student;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +12,15 @@ import java.util.UUID;
 @RequestMapping(path = "/students")
 @CrossOrigin
 public class StudentController {
+    private final StudentService studentService;
+
+    @Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
     @GetMapping
     public List<Student> getAllStudent(){
-        return  List.of(
-                new Student(UUID.randomUUID(),"james","Bond","james.bond@gmail.com", Student.Gender.MALE),
-                new Student(UUID.randomUUID(),"Elisa","Tamara","elisa.tamara@gmail.com", Student.Gender.FEMALE)
-        );
+        return studentService.getAllStudents();
     }
 }
