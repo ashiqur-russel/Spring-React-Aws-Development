@@ -5,10 +5,12 @@ import fetch from 'unfetch'
 
 
 class App extends Component {
-    state = {
-        students: []
-    }
 
+    App(props) {
+        super(props);
+        state = [];
+
+    }
     componentDidMount() {
         this.fetchStudents();
     }
