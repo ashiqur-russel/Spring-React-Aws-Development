@@ -1,7 +1,11 @@
 
 import React, { Component } from "react";
 import { Formik } from "formik";
-import { Input, Button, tag, Tag } from 'antd';
+import { Input, Button, Tag } from 'antd';
+
+import { addNewStudent } from "../client";
+
+
 const InputBottomMargin = { marginBottom: '5px' };
 const tagStyle = { backgroundColor: '#f50', 'color': 'white', ...InputBottomMargin };
 class AddStudentForm extends Component {
@@ -52,6 +56,8 @@ class AddStudentForm extends Component {
                     handleBlur,
                     handleSubmit,
                     isSubmitting,
+                    submitForm,
+                    isValid
                     /* and other goodies */
                 }) => (
                     <form onSubmit={handleSubmit}>
@@ -92,7 +98,11 @@ class AddStudentForm extends Component {
                         />
                         {errors.gender && touched.gender && <Tag style={tagStyle}>{errors.gender}</Tag>}
 
-                        <Button type="submit" disabled={isSubmitting}>
+                        <Button
+                            type="submit"
+                            disabled={isSubmitting || (touched && !isValid)}
+                            onClick={() => submitForm()}
+                        >
                             Submit
                         </Button>
                     </form>

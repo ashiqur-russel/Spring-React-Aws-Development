@@ -5,6 +5,7 @@ import { Table, Avatar, Modal } from 'antd';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import client, { getAllStudents } from './client';
 import Footer from './Footer';
 import AddStudentForm from './forms/AddStudentFrom';
 
@@ -62,14 +63,14 @@ const App = () => {
 
   const fetchStudents = () => {
 
-    fetch('http://localhost:8080/api/students')
-      .then(response => response.json()
-        .then(students => {
-          // console.log(students);
-          setStudents(students);
-          setLoading(true);
 
-        }));
+    getAllStudents().then(response => response.json()
+      .then(students => {
+        // console.log(students);
+        setStudents(students);
+        setLoading(true);
+
+      }));
   }
 
   useEffect(() => {
