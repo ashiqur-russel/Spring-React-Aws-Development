@@ -90,7 +90,8 @@ const App = () => {
           :
 
           <div>
-            <Table className='App-header'
+            <Table
+              className='table-size'
               dataSource={students}
               columns={columns}
               pagination={false}

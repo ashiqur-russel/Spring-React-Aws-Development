@@ -2,12 +2,13 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
 import { Input, Button, Tag } from 'antd';
-
 import { addNewStudent } from "../client";
 
 
 const InputBottomMargin = { marginBottom: '5px' };
 const tagStyle = { backgroundColor: '#f50', 'color': 'white', ...InputBottomMargin };
+
+
 class AddStudentForm extends Component {
 
     render() {
