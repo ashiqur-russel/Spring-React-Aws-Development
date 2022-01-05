@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'antd/dist/antd.min.css';
-import { Table, Avatar, Spin } from 'antd';
+import { Table, Avatar, Modal } from 'antd';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import Footer from './Footer';
 
 
 import fetch from 'unfetch';
@@ -50,6 +52,12 @@ const App = () => {
   //const { classes } = useStyle();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const openAddStudentModal = () => { setIsModalVisible(true) }
+
+  const closeAddStudentModal = () => { setIsModalVisible(false) }
+
 
   const fetchStudents = () => {
 
@@ -79,15 +87,33 @@ const App = () => {
 
           :
 
-          <Table className='App-header'
-            dataSource={students}
-            columns={columns}
-            pagination={false}
-            rowKey='StudentId'
-          />
+          <div>
+            <Table className='App-header'
+              dataSource={students}
+              columns={columns}
+              pagination={false}
+              rowKey='StudentId'
+            />
+            <Modal
+              title='Add new student'
+              visible={isModalVisible}
+              onOk={closeAddStudentModal}
+              onCancel={closeAddStudentModal}
+              width={1000}>
+
+              <h1>Hello modal</h1>
+
+            </Modal>
+            <Footer numberOfStudents={students.length}
+              handleAdStudentClickEvent={openAddStudentModal}
+
+            />
+          </div>
         }
 
       </div>
+
+
     </>
   )
 }
