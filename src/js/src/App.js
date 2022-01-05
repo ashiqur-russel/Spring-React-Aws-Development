@@ -6,6 +6,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Footer from './Footer';
+import AddStudentForm from './forms/AddStudentFrom';
 
 
 import fetch from 'unfetch';
@@ -101,8 +102,7 @@ const App = () => {
               onCancel={closeAddStudentModal}
               width={1000}>
 
-              <h1>Hello modal</h1>
-
+              <AddStudentForm />
             </Modal>
             <Footer numberOfStudents={students.length}
               handleAdStudentClickEvent={openAddStudentModal}
