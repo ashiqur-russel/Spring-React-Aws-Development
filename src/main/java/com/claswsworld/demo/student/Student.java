@@ -1,5 +1,7 @@
 package com.claswsworld.demo.student;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 public class Student {
@@ -10,10 +12,15 @@ public class Student {
     private final Gender gender;
 
     enum Gender{
-        MALE,FEMALE
+        MALE,FEMALE,female,male
     }
-
-    public Student(UUID studentId, String firstName, String lastName, String email, Gender gender) {
+    // Constructor
+    // Recieve Json Payload and them map all json properties to get from client side ->  @JsonProperty
+    public Student( @JsonProperty("studentId") UUID studentId,
+                    @JsonProperty("firstName") String firstName,
+                    @JsonProperty("lastName")  String lastName,
+                    @JsonProperty("email") String email,
+                    @JsonProperty("gender") Gender gender) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,5 +46,16 @@ public class Student {
 
     public Gender getGender() {
         return gender;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                '}';
     }
 }
